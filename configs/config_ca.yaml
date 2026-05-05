@@ -1,14 +1,14 @@
 model:
   type: multimodal_embedder
   feature_extractor_type: clip
-  pretrained_feature_extractor: models/clip-vit-base-patch32
+  pretrained_feature_extractor: openai/clip-vit-base-patch32
   multimodal_mapper_type: linear
   multimodal_mapper_layer_norm_before: true
   multimodal_mapper_layer_norm: false
   multimodal_mapper_activation: false
   multimodal_mapper_dropout: 0.1
   backbone_type: m2m_100
-  pretrained_backbone: models/m2m100_418M
+  pretrained_backbone: facebook/m2m100_418M
   feat_dim: 512
   num_labels: 2
   freeze_feature_extractor: false
@@ -72,8 +72,8 @@ data:
   max_frames: 700
 
 processor:
-  text_tokenizer_path: models/m2m100_418M
-  new_vocabulary: "__lsc__" # Comprova que hagi posat be el lang token de catala de signes
-  custom_preprocessor_path: models/clip-vit-base-patch32
+  text_tokenizer_path: facebook/m2m100_418M
+  new_vocabulary: "__lsc__"
+  custom_preprocessor_path: openai/clip-vit-base-patch32
   join_chw: false
   skip_frames_stride: 2

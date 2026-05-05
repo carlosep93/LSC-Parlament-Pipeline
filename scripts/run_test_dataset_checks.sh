@@ -8,11 +8,8 @@
 #SBATCH --time=12:00:00
 #SBATCH --gres=gpu:1
 #SBATCH -N1
-##SBATCH --account ehpc206
-##SBATCH --qos=acc_ehpc
-##SBATCH --qos=acc_debug
-#SBATCH --qos=acc_bscls
-#SBATCH --account bsc88
+#SBATCH --account <your_slurm_account>
+#SBATCH --qos <your_slurm_qos>
 
 module load nvidia-hpc-sdk ffmpeg
 

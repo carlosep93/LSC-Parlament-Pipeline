@@ -6,13 +6,9 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=24
 #SBATCH --time=8:00:00
-##SBATCH --gres=gpu:0
-##SBATCH --qos gp_debug
-#SBATCH --qos=gp_bscls
 #SBATCH -N1
-#SBATCH --account bsc88
-
-# should be run with a gpp node
+#SBATCH --account <your_slurm_account>
+#SBATCH --qos <your_slurm_qos>
 
 module load python/3.10.15
 source env3.10/bin/activate
