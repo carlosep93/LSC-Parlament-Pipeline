@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=training_multimodalhugs-%j
+#SBATCH -D .
+#SBATCH --output=./logs/training_multimodalhugs-%j.out
+#SBATCH --error=./logs/training_multimodalhugs-%j.err
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+##SBATCH --time=04:00:00
+#SBATCH --gres=gpu:0
+##SBATCH --qos=acc_bscls
+#SBATCH --qos=gp_debug
+#SBATCH -N1
+#SBATCH --account bsc88
+
+module load python/3.10.15
+source env3.10/bin/activate
+
+multimodalhugs-setup --modality pose2text --config_path configs/config_"$1".yaml
+multimodalhugs-train --task translation --config_path configs/config_"$1".yaml --output_dir "$2"
