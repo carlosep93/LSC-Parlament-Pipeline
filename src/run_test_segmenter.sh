@@ -5,14 +5,11 @@
 #SBATCH --gres=gpu:0
 #SBATCH --time=1:00:00
 #SBATCH --cpus-per-task=20
-#SBATCH --qos gp_debug
 #SBATCH -N1
-#SBATCH --account bsc88
-##SBATCH --qos=acc_bscls
-
+#SBATCH --account <your_slurm_account>
+#SBATCH --qos <your_slurm_qos>
 
 source load_ffmpeg.sh
 source env3.10/bin/activate
 
 python test_segmenter.py
-

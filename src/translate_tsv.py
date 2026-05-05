@@ -37,20 +37,22 @@ if __name__ == '__main__':
     parser.add_argument(
         "-o", "--out_file_path", required=True
     )
+    parser.add_argument(
+        "-m", "--model_id", required=True,
+        help="HuggingFace model ID of the instruction-tuned LLM used for translation."
+    )
 
     args = parser.parse_args()
-
-    model_id = "BSC-LT/salamandraTA-7b-instruct"
 
     source = 'es', 'Spanish'
     target = 'ca', 'Catalan'
 
     template = lambda x: f"Translate the following text from {source} into {target}.\n{source[1]}: {x} \n{target[1]}:"
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_id)
 
     model = AutoModelForCausalLM.from_pretrained(
-        model_id,
+        args.model_id,
         device_map="auto",
         torch_dtype=torch.bfloat16
     )
