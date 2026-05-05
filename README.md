@@ -41,7 +41,9 @@ The code is structured into the following steps:
 Once the dataset is created, models can be trained using the **MultimodalHugs** framework:
 
 7.  **Metadata creation:** Convert the generated dataset into the metadata format required by the framework.
-8.  **Training:** The default model configuration utilizes **CLIP** as the feature extractor and **M2M-100 (480M)** as the translation model.
+8.  **Training:** The default model configuration utilizes **CLIP** as the feature extractor and **M2M-100 418M** as the translation model.
 9.  **Evaluation:** Assess the model's performance on the designated **test partition**.
+
+For full commands, argument descriptions, and SLURM wrappers for steps 7–9, see [docs/slt_experiments.md](docs/slt_experiments.md).
 
 
