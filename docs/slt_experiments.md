@@ -45,9 +45,12 @@ pass both codes at once: `--languages ca es`.
 | `--languages` | One or more spoken-language codes to include (`ca`, `es`) |
 | `--cased` | Preserve original casing (do not lowercase transcriptions) |
 | `--filter_sessions` | Exclude a fixed set of sessions with known recording or annotation artefacts |
+| `--split_by_sessions` | Split train/dev/test by full recording session instead of by individual sample (mutually exclusive with `--minimize_unknowns`) |
 
 The retained segments are randomly split into **train / dev / test**
-(60 % / up to 2,000 / up to 2,000 samples, seed 42).
+(60 % / up to 2,000 / up to 2,000 samples, seed 42) by default.
+To split by recording session instead (so that test sessions are entirely held out
+from training), add `--split_by_sessions` with the same seed.
 
 Each output TSV has the following columns:
 
