@@ -1,0 +1,79 @@
+model:
+  type: multimodal_embedder
+  feature_extractor_type: clip
+  pretrained_feature_extractor: models/clip-vit-base-patch32
+  multimodal_mapper_type: linear
+  multimodal_mapper_layer_norm_before: true
+  multimodal_mapper_layer_norm: false
+  multimodal_mapper_activation: false
+  multimodal_mapper_dropout: 0.1
+  backbone_type: m2m_100
+  pretrained_backbone: models/m2m100_418M
+  feat_dim: 512
+  num_labels: 2
+  freeze_feature_extractor: false
+  freeze_multimodal_mapper: false
+  freeze_backbone: false
+  freeze_decoder_embed_tokens: false
+  freeze_encoder_embed_tokens: false
+  freeze_lm_head: false
+  max_new_tokens: 100
+
+setup:
+  output_dir: catalan_spanish/
+
+training:
+  run_name: parlament_ca-es_video
+  output_dir: trained
+  logging_dir: logs
+  do_train: true
+  do_eval: true
+  early_stopping: false
+  #early_stopping_patience: 5
+  predict_with_generate: true
+  eval_strategy: steps
+  save_strategy: steps
+  eval_steps: 500
+  save_steps: 500
+  logging_steps: 100
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 32
+  learning_rate: 5e-05
+  weight_decay: 0
+  adam_beta1: 0.9
+  adam_beta2: 0.998
+  max_grad_norm: 0.0
+  num_train_epochs: 1
+  max_steps: 200000
+  lr_scheduler_type: inverse_sqrt
+  warmup_steps: 8000
+  save_total_limit: 5
+  seed: 3435
+  dataloader_drop_last: false
+  metric_for_best_model: sacrebleu
+  metric_name: sacrebleu,chrf
+  greater_is_better: true
+  load_best_model_at_end: true
+  remove_unused_columns: false
+  dataloader_num_workers: 10
+  dataloader_prefetch_factor: 4
+  fp16: true
+
+data:
+  name: parlament_ca-es_video
+  train_metadata_file:
+    ca-es/train.tsv
+  validation_metadata_file:
+    ca-es/validation.tsv
+  test_metadata_file:
+    ca-es/test.tsv
+  shuffle: true
+  max_frames: 700
+
+processor:
+  text_tokenizer_path: models/m2m100_418M
+  new_vocabulary: "__lsc__"
+  custom_preprocessor_path: models/clip-vit-base-patch32
+  join_chw: false
+  skip_frames_stride: 2

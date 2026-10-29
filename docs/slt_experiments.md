@@ -82,7 +82,7 @@ sbatch scripts/run_metadata_creation_multimodalhugs.sh \
 Initialises the processor, model, and dataset artefacts, then fine-tunes end-to-end.
 Each language experiment has its own config in `configs/` (e.g. `configs/config_ca.yaml`,
 `configs/config_es.yaml`). The configs differ only in a small set of
-language-specific fields; all training hyperparameters are shared.
+language-specific fields; all training hyperparameters are shared. Use `ca-es` for the bilingual experiment.
 
 ```bash
 # Initialise processor, model, and dataset artefacts
@@ -149,6 +149,9 @@ sbatch scripts/run_evaluate_multimodal_hugs.sh \
     configs/config_<lang>.yaml \
     metadata/ <lang> results/ <checkpoint> chrf
 ```
+
+If testing a bilingual model, you can use `config_test_ca-es_only-ca.yaml` and `config_test_ca-es_only-es.yaml` to 
+evaluate the model on each of the languages. 
 
 ### Stage 2 — Neural metrics
 
