@@ -33,6 +33,10 @@ def segment_video(data_directory, segment, out_path):
     end = datetime.strptime(segment['end'], '%H:%M:%S').time()
     end_seconds = timedelta(hours=end.hour,minutes=end.minute,seconds=end.second).total_seconds()
     end = datetime.combine(datetime.now(), end)
+    if end <= start:
+        # blocks spanning two video files get end < start from the metadata; ffmpeg can't cut them
+        logging.warning(f"Skipping {base_name} {segment['start']}-{segment['end']}: end <= start")
+        return None
     duration = str(end - start)
 
     file_name = "_".join([base_name, str(int(start_seconds)), str(int(end_seconds))]) + ".mp4"
