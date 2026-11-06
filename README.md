@@ -10,6 +10,21 @@ Official implementation of the paper: **"LSC-Parlament: An Automatically Aligned
 ##  Overview
 We introduce **LSC-Parlament**, a large-scale, multimodal dataset for Catalan Sign Language built from parliamentary sessions recorded between 2021 and 2024. The dataset is constructed through a fully automated pipeline that leverages audio timestamps as an intermediate link to align sign language video with spoken-language transcriptions, eliminating the need for any prior human annotation. While demonstrated on parliamentary data, the pipeline is designed to be applicable to any broadcast source containing interpreted sign language. The resulting corpus contains over 87 hours of video across two spoken-language tracks (Catalan or Spanish) each densely aligned at the segment level with the corresponding interpreter signing, speech recording, and written translation. Unlike most existing sign language corpora, which are limited to video-text pairs, LSC-Parlament jointly offers RGB video, audio, and text, covering open-domain parliamentary discourse and enabling research in both multimodal and cross-lingual SLT.
 
+## Data Use and Ethics
+
+Please read this section before downloading or redistributing the dataset.
+
+**Source and legal basis.** The videos and transcripts originate from the public broadcasts and the *Diari de Sessions* of the Parlament de Catalunya. They are reused under the Parlament's [legal notice](https://www.parlament.cat/wp/pcat/serveis-parlament/avis-legal/), which allows reuse without prior authorisation provided that (i) the Parlament de Catalunya is identified as the source, (ii) the date on which the data were obtained is stated, (iii) the content is not altered or taken out of context, and (iv) it is not presented as an official version. **All source material was retrieved in July 2024.** Any redistribution or derivative work must carry the same attribution and retrieval date, and must not be presented as an official record of the Parlament.
+
+**Context preservation.** Interventions are kept whole and every segment retains its session, date and speaker metadata, so that no clip is released stripped of its thematic and discursive context. We ask users not to redistribute isolated clips without that context.
+
+**People appearing in the data.** Interpreters and Members of Parliament appear solely in their official, public capacity. No processing aimed at identifying individuals was performed and no biometric templates were extracted; the data are therefore not biometric data under GDPR Art. 9. The dataset is intended for research on sign language translation and accessibility.
+
+**Our request to users.** The dataset is released under CC-BY 4.0. That licence does not cover publicity, privacy or other personality rights (§2(b)(1)), so users remain bound by applicable data-protection law. **We ask that the data not be used for surveillance, biometric re-identification, or profiling of the people who appear in it.**
+
+**Removal requests.** If you appear in the dataset and want your data removed, or you believe any content is used in breach of the terms above, please open an issue in this repository or contact the authors.
+
+
 ##  Installation
 
 ```bash
@@ -106,5 +121,12 @@ Once the dataset is created, models can be trained using the **MultimodalHugs** 
 11. **Evaluation:** Assess the model's performance on the designated **test partition**.
 
 These correspond to the `7-`, `8-` and `9-run-*.sh` scripts. For full commands, argument descriptions, and SLURM wrappers, see [docs/slt_experiments.md](docs/slt_experiments.md).
+
+[9:26 AM]
+## Acknowledgements
+
+This work has been promoted and financed by the Government of Catalonia through the Aina Project. This work is also supported by MLLM4TRA (PID2024-158157OB-C32) funded by MCIN/AEI/10.13039/501100011033/FEDER, UE. Carlos Escolano is funded by Grant LLM4SL (PID2024-157855OA-C33) MICIU/AEI/10.13039/501100011033/FEDER, UE. Gerard Sant is funded by the SIGMA project (grant no. G-95017-01-07), supported by the Digital Society Initiative (DSI) at the University of Zurich. Marcel Granero-Moya is supported by the Joan Oró FI programme (Generalitat de Catalunya, file no. 2024 FI-1 01038, co-funded by ESF+) and Maria de Maeztu (CEX2021-001195-M/AEI/10.13039/501100011033).
+
+We want to warmly thank Mireia Isal for the manual annotation as well as for her advice on parliamentary sign language interpretation and Catalan Sign Language.
 
 
